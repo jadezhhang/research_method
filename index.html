@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6957d5">
+  <meta name="description" content="教育研究方法期末冲刺复习网站：章节知识点、大题背诵、材料题模板、客观题训练与错题本。">
+  <title>教育研究方法｜期末冲刺站</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="回到首页">
+      <span class="brand-mark">研</span>
+      <span><strong>教育研究方法</strong><small>期末冲刺站</small></span>
+    </a>
+    <button id="menuButton" class="icon-button menu-button" aria-label="打开导航" aria-expanded="false">☰</button>
+    <nav id="mainNav" class="main-nav" aria-label="主导航">
+      <a href="#home" data-view="home">首页</a>
+      <a href="#chapters" data-view="chapters">章节复习</a>
+      <a href="#essays" data-view="essays">大题背诵</a>
+      <a href="#templates" data-view="templates">材料模板</a>
+      <a href="#compare" data-view="compare">概念对比</a>
+      <a href="#quiz" data-view="quiz">题型训练</a>
+      <a href="#notebook" data-view="notebook">收藏 / 错题</a>
+    </nav>
+    <button id="themeButton" class="icon-button" aria-label="切换深色模式">◐</button>
+  </header>
+
+  <main>
+    <section id="home" class="view active">
+      <div class="hero shell">
+        <div class="hero-copy">
+          <span class="eyebrow">依据 13 份复习资料 + 2023 回忆真题 + 老师口头重点</span>
+          <h1>别再从第一页硬啃。<br><em>按分值复习。</em></h1>
+          <p>先拿下问卷、访谈、实验效度、观察方案和行动研究，再补概念辨析。这个站把资料压成了可背、可查、可练的答案。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#chapters">开始章节复习</a>
+            <a class="button ghost" href="#quiz">直接刷题</a>
+          </div>
+          <div class="exam-strip">
+            <span><b>20</b> 分选择</span>
+            <span><b>10</b> 分简答</span>
+            <span><b>20</b> 分论述</span>
+            <span><b>50</b> 分材料</span>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <span class="mini-label">你的总进度</span>
+          <div class="progress-ring" id="progressRing"><strong id="progressPercent">0%</strong></div>
+          <p id="progressText">还没有标记已复习知识点</p>
+          <button class="text-button" id="continueButton">继续上次复习 →</button>
+        </aside>
+      </div>
+
+      <div class="shell home-grid">
+        <section class="panel priority-panel">
+          <div class="section-heading">
+            <div><span class="eyebrow">老师重点速览</span><h2>先背这些，分值密度最高</h2></div>
+            <span class="hot-badge">🔥 高频</span>
+          </div>
+          <div id="priorityGrid" class="priority-grid"></div>
+        </section>
+
+        <aside class="panel range-panel">
+          <span class="eyebrow">范围处理</span>
+          <h2>本次考试地图</h2>
+          <div id="rangeList" class="range-list"></div>
+          <div class="notice warning">
+            <strong>待确认：第 11 章</strong>
+            <p>旧截图称第 10、11 章不考；你最新补充“第 11 章报告撰写内容”。本站将其列为临考补充，不计入主进度。</p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="shell sprint">
+        <div class="section-heading">
+          <div><span class="eyebrow">冲刺路线</span><h2>按剩余时间选一条</h2></div>
+        </div>
+        <div class="route-grid">
+          <article><span>只剩 3 小时</span><h3>材料题保命线</h3><p>问卷模板 → 访谈提纲 → 行动研究方案 → 实验效度 → 2023 真题。</p></article>
+          <article><span>还有 1 天</span><h3>大题高分线</h3><p>第 5、9 章 → 第 3、4 章 → 第 7、8 章 → 22 道大题背诵。</p></article>
+          <article><span>还有 3 天</span><h3>完整稳妥线</h3><p>九章知识卡 → 概念对比 → 80 道客观题 → 错题二刷。</p></article>
+        </div>
+      </section>
+    </section>
+
+    <section id="chapters" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">可背 · 可查</span><h1>章节复习</h1><p>每张卡都按“定义—背诵—展开—易混—例题”整理。</p></div>
+        <div class="search-wrap"><span>⌕</span><input id="knowledgeSearch" type="search" placeholder="搜索知识点、关键词、题型…"></div>
+      </div>
+      <div id="chapterFilters" class="filter-row"></div>
+      <div class="chapter-layout">
+        <aside id="chapterSidebar" class="chapter-sidebar"></aside>
+        <div>
+          <div id="knowledgeCount" class="result-count"></div>
+          <div id="knowledgeList" class="knowledge-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="essays" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">简答 · 论述</span><h1>大题背诵区</h1><p>同一题按 6 分、10 分、20 分展开，背骨架，不背废话。</p></div>
+        <select id="essayChapterFilter" aria-label="按章节筛选大题"></select>
+      </div>
+      <div id="essayList" class="essay-list"></div>
+    </section>
+
+    <section id="templates" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">25 分材料题核心</span><h1>材料题模板</h1><p>固定步骤 + 套话 + 完整示例。复制后替换研究主题即可练习。</p></div>
+      </div>
+      <div id="templateTabs" class="filter-row"></div>
+      <div id="templateDetail"></div>
+    </section>
+
+    <section id="compare" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">易混概念</span><h1>一眼分清</h1><p>客观题和材料辨析常在这些边界上挖坑。</p></div>
+      </div>
+      <div id="comparisonGrid" class="comparison-grid"></div>
+    </section>
+
+    <section id="quiz" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">判断 40+ · 单选 40+</span><h1>题型训练</h1><p>答完立即看解析，答错自动进入错题本。</p></div>
+        <button id="resetQuizButton" class="button ghost small">重置本轮</button>
+      </div>
+      <div class="quiz-toolbar">
+        <div id="quizTypeFilters" class="filter-row"></div>
+        <select id="quizChapterFilter" aria-label="按章节筛选题目"></select>
+        <label class="switch-label"><input id="wrongOnlyToggle" type="checkbox"><span>只练错题</span></label>
+      </div>
+      <div class="quiz-stats">
+        <span>本轮已答 <b id="answeredCount">0</b></span>
+        <span>正确 <b id="correctCount">0</b></span>
+        <span>正确率 <b id="accuracyRate">—</b></span>
+      </div>
+      <div id="quizList" class="quiz-list"></div>
+    </section>
+
+    <section id="notebook" class="view shell">
+      <div class="page-head">
+        <div><span class="eyebrow">保存在本机浏览器</span><h1>收藏与错题本</h1><p>刷新页面不会消失；换设备或清浏览器数据后会重置。</p></div>
+        <button id="resetAllButton" class="button danger small">一键重置全部记录</button>
+      </div>
+      <div class="notebook-grid">
+        <section class="panel"><div class="section-heading"><h2>收藏知识点</h2><span id="favoriteCount" class="count-pill">0</span></div><div id="favoriteList"></div></section>
+        <section class="panel"><div class="section-heading"><h2>错题本</h2><span id="wrongCount" class="count-pill">0</span></div><div id="wrongList"></div></section>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <button id="backTop" class="back-top" aria-label="回到顶部">↑</button>
+  <script src="review-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
