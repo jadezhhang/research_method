@@ -67,6 +67,14 @@
     $("#progressPercent").textContent = `${percent}%`;
     $("#progressText").textContent = complete ? `已完成 ${complete} / ${mainKnowledge.length} 个核心知识点` : "还没有标记已复习知识点";
     $("#progressRing").style.setProperty("--progress", `${percent * 3.6}deg`);
+    if ($("#progressBar")) $("#progressBar").style.width = `${percent}%`;
+    if ($("#completedStat")) $("#completedStat").textContent = complete;
+    if ($("#favoriteStat")) $("#favoriteStat").textContent = state.favorites.length;
+    if ($("#wrongStat")) $("#wrongStat").textContent = state.wrongs.length;
+    if ($("#lastStudyText")) {
+      const last = data.knowledge.find(item => item.id === state.lastKnowledge);
+      $("#lastStudyText").textContent = last ? last.title : "暂无记录";
+    }
   }
 
   function renderChapterControls() {
@@ -317,6 +325,12 @@
       }
       const quizTypeButton = event.target.closest("[data-quiz-type]");
       if (quizTypeButton) { quizType = quizTypeButton.dataset.quizType; renderQuiz(); return; }
+      const homeQuiz = event.target.closest("[data-home-quiz]");
+      if (homeQuiz) {
+        quizType = homeQuiz.dataset.homeQuiz;
+        setTimeout(renderQuiz, 20);
+        return;
+      }
       const answer = event.target.closest("[data-answer]");
       if (answer) {
         const id = answer.dataset.answer;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#6957d5">
+  <meta name="theme-color" content="#355c4b">
   <meta name="description" content="教育研究方法期末冲刺复习网站：章节知识点、大题背诵、材料题模板、客观题训练与错题本。">
   <title>教育研究方法｜期末冲刺站</title>
   <link rel="stylesheet" href="style.css">
@@ -29,35 +29,61 @@
 
   <main>
     <section id="home" class="view active">
-      <div class="hero shell">
-        <div class="hero-copy">
-          <span class="eyebrow">依据 13 份复习资料 + 2023 回忆真题 + 老师口头重点</span>
-          <h1>别再从第一页硬啃。<br><em>按分值复习。</em></h1>
-          <p>先拿下问卷、访谈、实验效度、观察方案和行动研究，再补概念辨析。这个站把资料压成了可背、可查、可练的答案。</p>
-          <div class="hero-actions">
-            <a class="button primary" href="#chapters">开始章节复习</a>
-            <a class="button ghost" href="#quiz">直接刷题</a>
+      <div class="shell dashboard">
+        <section class="dashboard-intro">
+          <span class="eyebrow">教育研究方法 · 期末复习</span>
+          <h1>复习控制台</h1>
+          <p>内容综合 13 份复习资料、2023 回忆真题和老师口头重点。建议先掌握第 5、9 章的设计题，再复习实验、观察和质性研究方法。</p>
+          <div class="dashboard-actions">
+            <a class="button primary" href="#chapters">继续章节复习</a>
+            <a class="button ghost" href="#essays">查看高频大题</a>
           </div>
-          <div class="exam-strip">
-            <span><b>20</b> 分选择</span>
-            <span><b>10</b> 分简答</span>
-            <span><b>20</b> 分论述</span>
-            <span><b>50</b> 分材料</span>
+          <div class="exam-strip" aria-label="考试题型分值">
+            <span><b>20</b> 选择</span>
+            <span><b>10</b> 简答</span>
+            <span><b>20</b> 论述</span>
+            <span><b>50</b> 材料</span>
           </div>
-        </div>
-        <aside class="hero-card">
-          <span class="mini-label">你的总进度</span>
-          <div class="progress-ring" id="progressRing"><strong id="progressPercent">0%</strong></div>
+        </section>
+
+        <aside class="study-overview">
+          <div class="overview-head">
+            <div><span class="mini-label">总复习进度</span><strong id="progressPercent">0%</strong></div>
+            <button class="text-button" id="continueButton">继续上次学习</button>
+          </div>
+          <div class="progress-track" id="progressRing"><span id="progressBar"></span></div>
           <p id="progressText">还没有标记已复习知识点</p>
-          <button class="text-button" id="continueButton">继续上次复习 →</button>
+          <div class="stat-grid">
+            <div><strong id="completedStat">0</strong><span>已复习</span></div>
+            <div><strong id="favoriteStat">0</strong><span>收藏</span></div>
+            <div><strong id="wrongStat">0</strong><span>错题</span></div>
+          </div>
+          <div class="last-study"><span>最近学习</span><b id="lastStudyText">暂无记录</b></div>
         </aside>
       </div>
+
+      <section class="shell module-section">
+        <div class="section-heading compact-heading">
+          <div><span class="eyebrow">功能入口</span><h2>选择复习方式</h2></div>
+          <p>所有学习记录自动保存在当前浏览器</p>
+        </div>
+        <div class="module-grid">
+          <a class="module-card" href="#chapters"><span class="module-index">01</span><h3>章节复习</h3><p>第 1—9 章知识卡，按重点与章节筛选。</p><b>进入复习 →</b></a>
+          <a class="module-card" href="#essays"><span class="module-index">02</span><h3>高频大题</h3><p>22 道简答与论述，切换 6 / 10 / 20 分答案。</p><b>开始背诵 →</b></a>
+          <a class="module-card" href="#templates"><span class="module-index">03</span><h3>材料题模板</h3><p>问卷、访谈、观察、研究计划与行动研究。</p><b>查看模板 →</b></a>
+          <a class="module-card" href="#compare"><span class="module-index">04</span><h3>概念对比</h3><p>集中辨析信效度、抽样、访谈和研究类型。</p><b>查看对比 →</b></a>
+          <a class="module-card" href="#quiz" data-home-quiz="单选"><span class="module-index">05</span><h3>选择题练习</h3><p>42 道单选题，即时判分并显示解析。</p><b>开始练习 →</b></a>
+          <a class="module-card" href="#quiz" data-home-quiz="判断"><span class="module-index">06</span><h3>判断题练习</h3><p>40 道判断题，覆盖真题易错表述。</p><b>开始练习 →</b></a>
+          <a class="module-card" href="#notebook"><span class="module-index">07</span><h3>错题本</h3><p>自动收集答错题目，方便考前集中重练。</p><b>查看错题 →</b></a>
+          <a class="module-card" href="#notebook"><span class="module-index">08</span><h3>收藏夹</h3><p>保存需要反复背诵的知识点和答案。</p><b>查看收藏 →</b></a>
+        </div>
+      </section>
 
       <div class="shell home-grid">
         <section class="panel priority-panel">
           <div class="section-heading">
             <div><span class="eyebrow">老师重点速览</span><h2>先背这些，分值密度最高</h2></div>
-            <span class="hot-badge">🔥 高频</span>
+            <span class="hot-badge">高频</span>
           </div>
           <div id="priorityGrid" class="priority-grid"></div>
         </section>
@@ -73,15 +99,9 @@
         </aside>
       </div>
 
-      <section class="shell sprint">
-        <div class="section-heading">
-          <div><span class="eyebrow">冲刺路线</span><h2>按剩余时间选一条</h2></div>
-        </div>
-        <div class="route-grid">
-          <article><span>只剩 3 小时</span><h3>材料题保命线</h3><p>问卷模板 → 访谈提纲 → 行动研究方案 → 实验效度 → 2023 真题。</p></article>
-          <article><span>还有 1 天</span><h3>大题高分线</h3><p>第 5、9 章 → 第 3、4 章 → 第 7、8 章 → 22 道大题背诵。</p></article>
-          <article><span>还有 3 天</span><h3>完整稳妥线</h3><p>九章知识卡 → 概念对比 → 80 道客观题 → 错题二刷。</p></article>
-        </div>
+      <section class="shell suggestion-bar">
+        <strong>建议顺序</strong>
+        <span>老师重点 → 高频大题 → 选择判断 → 材料题模板 → 错题二刷</span>
       </section>
     </section>
 
