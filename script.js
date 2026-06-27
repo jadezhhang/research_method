@@ -19,13 +19,12 @@
   }
   function saveState() { localStorage.setItem(storeKey, JSON.stringify(state)); updateProgress(); renderNotebook(); }
   function chapterTitle(id) {
-    if (Number(id) === 11) return "第11章 报告撰写（待确认）";
     const chapter = data.chapters.find(c => c.id === Number(id));
     return chapter ? `第${chapter.id}章 ${chapter.title}` : "";
   }
   function importanceClass(value) {
     if (value.includes("高频") || value.includes("重中")) return "high";
-    if (value.includes("中频")) return "medium";
+    if (value.includes("中高") || value.includes("中频")) return "medium";
     return "low";
   }
   function showToast(message) {
@@ -78,14 +77,13 @@
   }
 
   function renderChapterControls() {
-    const importanceOptions = ["all","高频","中频","了解","待确认"];
+    const importanceOptions = ["all","高频","中高","中频","了解"];
     $("#chapterFilters").innerHTML = importanceOptions.map(item =>
       `<button class="filter-button ${knowledgeImportance === item ? "active" : ""}" data-importance="${item}">${item === "all" ? "全部重点" : item}</button>`
     ).join("");
     $("#chapterSidebar").innerHTML = [
       `<button class="chapter-side-button ${knowledgeChapter === "all" ? "active" : ""}" data-chapter="all"><b>全</b><span>全部章节</span></button>`,
       ...data.chapters.map(chapter => `<button class="chapter-side-button ${String(knowledgeChapter) === String(chapter.id) ? "active" : ""}" data-chapter="${chapter.id}"><b>${chapter.id}</b><span>${chapter.title}</span></button>`),
-      `<button class="chapter-side-button ${String(knowledgeChapter) === "11" ? "active" : ""}" data-chapter="11"><b>11</b><span>待确认补充</span></button>`
     ].join("");
   }
 
@@ -187,8 +185,7 @@
       `<button class="filter-button ${quizType === type ? "active" : ""}" data-quiz-type="${type}">${type === "all" ? "全部题型" : type}</button>`
     ).join("");
     $("#quizChapterFilter").innerHTML = `<option value="all">全部章节</option>` +
-      data.chapters.map(c => `<option value="${c.id}">第${c.id}章</option>`).join("") +
-      `<option value="11">第11章（待确认）</option>`;
+      data.chapters.map(c => `<option value="${c.id}">第${c.id}章</option>`).join("");
     $("#quizChapterFilter").value = quizChapter;
   }
   function visibleQuizItems() {
