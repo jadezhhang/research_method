@@ -108,7 +108,6 @@
               ${item.types.map(type => `<span class="tag">${type}</span>`).join("")}
             </div>
             <h3>${item.title}</h3>
-            <p>${item.definition}</p>
           </div>
           <div class="card-actions">
             <button class="memorize-toggle ${completed ? "active" : ""}" data-complete="${item.id}" title="背诵状态">${completed ? "已背" : "未背"}</button>
