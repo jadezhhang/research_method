@@ -98,7 +98,6 @@
     });
     $("#knowledgeCount").textContent = `找到 ${items.length} 个知识点`;
     $("#knowledgeList").innerHTML = items.length ? items.map(item => {
-      const favorite = state.favorites.includes(item.id);
       const completed = state.completed.includes(item.id);
       return `<article class="knowledge-card" id="${item.id}">
         <div class="knowledge-summary" data-toggle-card="${item.id}">
@@ -112,18 +111,16 @@
             <p>${item.definition}</p>
           </div>
           <div class="card-actions">
-            <button class="round-button ${favorite ? "active" : ""}" data-favorite="${item.id}" title="收藏">★</button>
+            <button class="memorize-toggle ${completed ? "active" : ""}" data-complete="${item.id}" title="背诵状态">${completed ? "已背" : "未背"}</button>
             <button class="round-button" title="展开">⌄</button>
           </div>
         </div>
         <div class="knowledge-body">
-          <div class="answer-block"><h4>背诵版答案</h4><p>${item.memory}</p></div>
-          <div class="answer-block"><h4>展开版答案</h4><p>${item.expand}</p></div>
+          <div class="answer-block"><h4>答案</h4><p>${item.memory}</p></div>
           <div class="answer-block"><h4>关键词</h4><ul class="keyword-list">${item.keywords.map(k => `<li>${k}</li>`).join("")}</ul></div>
           <div class="answer-block"><h4>易混点</h4><p>${item.confuse}</p></div>
           <div class="answer-block"><h4>教育研究例子</h4><p>${item.example}</p></div>
           <div class="answer-block"><h4>可能出题方式</h4><p>${item.question}</p></div>
-          <div class="complete-row"><button class="button ${completed ? "primary" : "ghost"} small" data-complete="${item.id}">${completed ? "✓ 已复习" : "标记已复习"}</button></div>
         </div>
       </article>`;
     }).join("") : `<div class="empty-state">没有匹配的知识点，换个关键词试试。</div>`;
@@ -280,7 +277,7 @@
       const chapter = event.target.closest("[data-chapter]");
       if (chapter) { knowledgeChapter = chapter.dataset.chapter; renderKnowledge(); return; }
       const summary = event.target.closest("[data-toggle-card]");
-      if (summary && !event.target.closest("[data-favorite]")) {
+      if (summary && !event.target.closest("[data-favorite]") && !event.target.closest("[data-complete]")) {
         const card = summary.closest(".knowledge-card");
         card.classList.toggle("open");
         if (card.classList.contains("open")) {
@@ -299,7 +296,7 @@
       if (complete) {
         const id = complete.dataset.complete;
         state.completed = state.completed.includes(id) ? state.completed.filter(x => x !== id) : [...state.completed, id];
-        saveState(); renderKnowledge(); showToast(state.completed.includes(id) ? "已标记复习完成" : "已取消完成"); return;
+        saveState(); renderKnowledge(); showToast(state.completed.includes(id) ? "已标记为已背" : "已改为未背"); return;
       }
       const essayHead = event.target.closest("[data-toggle-essay]");
       if (essayHead) { essayHead.closest(".essay-card").classList.toggle("open"); return; }

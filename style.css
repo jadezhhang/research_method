@@ -364,6 +364,20 @@ select:focus { border-color: var(--primary); outline: 3px solid rgba(53, 92, 75,
 .knowledge-summary h3 { margin-bottom: 4px; }
 .knowledge-summary p { margin-bottom: 0; color: var(--muted); font-size: .86rem; }
 .card-actions { display: flex; gap: 6px; }
+.memorize-toggle {
+  min-width: 54px;
+  height: 34px;
+  padding: 0 10px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.memorize-toggle:hover { color: var(--primary); background: var(--surface-tint); }
+.memorize-toggle.active { color: #fff; background: var(--primary); border-color: var(--primary); }
 .round-button {
   width: 34px;
   height: 34px;
@@ -545,6 +559,7 @@ body.dark .button.primary,
 body.dark .filter-button.active,
 body.dark .score-tab.active,
 body.dark .round-button.active,
+body.dark .memorize-toggle.active,
 body.dark .count-pill,
 body.dark .back-top { color: #16251d; }
 body.dark .brand-mark { color: #16251d; }
